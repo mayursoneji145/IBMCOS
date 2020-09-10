@@ -1,0 +1,100 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>IBM_Assessment</groupId>
+  <artifactId>DE</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+    <dependencies>
+
+ 	<dependency>
+    	<groupId>com.ibm.stocator</groupId>
+      	<artifactId>stocator</artifactId>
+      	<version>1.0.24</version>
+  	</dependency>  
+  
+      <dependency>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.1.0</version>
+    </dependency>
+    
+    <!-- https://mvnrepository.com/artifact/net.alchim31.maven/scala-maven-plugin -->
+	<dependency>
+    	<groupId>net.alchim31.maven</groupId>
+    	<artifactId>scala-maven-plugin</artifactId>
+    	<version>4.4.0</version>
+	</dependency>
+    
+    <!-- https://mvnrepository.com/artifact/org.scala-lang/scala-library -->
+	<dependency>
+    	<groupId>org.scala-lang</groupId>
+    	<artifactId>scala-library</artifactId>
+    	<version>2.11.12</version>
+	</dependency>
+    
+      <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-core -->
+    <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-core_2.11</artifactId>
+        <version>2.4.4</version>
+    </dependency>
+    
+      <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-streaming -->
+    <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-sql_2.11</artifactId>
+        <version>2.4.4</version>
+    </dependency>
+  </dependencies>
+  
+  
+  <description>Assessment</description>
+  <build>
+    <sourceDirectory>src/main/scala</sourceDirectory>
+    <plugins>
+      <plugin>
+    	<groupId>net.alchim31.maven</groupId>
+    	<artifactId>scala-maven-plugin</artifactId>
+    	<version>4.4.0</version>
+			<executions>
+			<execution>
+				<goals>
+					<goal>compile</goal>
+				</goals>
+			</execution>
+			</executions>
+	  </plugin>
+
+      <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-assembly-plugin</artifactId>
+		<version>3.3.0</version>
+        <configuration>
+			<source>1.8</source>
+			<target>1.8</target>
+			
+			<archive>
+				<manifest>
+					<mainClass>com.mainprog</mainClass>
+				</manifest>
+			</archive>
+			
+			<descriptorRefs>
+				<descriptorRef>jar-with-dependencies</descriptorRef>
+			</descriptorRefs>
+			
+        </configuration>
+        <executions>
+        	<execution>
+				<phase>package</phase>
+				<goals>
+					<goal>single</goal>
+				</goals>
+			</execution>
+		</executions>
+
+      </plugin>
+      
+    </plugins>
+  </build>
+</project>
